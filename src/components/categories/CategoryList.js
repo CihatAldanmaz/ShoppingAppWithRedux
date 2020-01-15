@@ -22,7 +22,7 @@ class CategoryList extends Component {
         ))}
         
     </ListGroup>
-                <h5>Current Category : {this.props.currentCategory.categoryName}</h5>
+                <br></br><h5>Current Category : {this.props.currentCategory.categoryName}</h5>
             </div>
         )
     }
@@ -38,7 +38,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         actions:{
-            getCategories:bindActionCreators(categoryActions.getCategories, dispatch)
+            getCategories:bindActionCreators(categoryActions.getCategories, dispatch),
+            changeCategory:bindActionCreators(categoryActions.changeCategory, dispatch)
         }
     }
 }
