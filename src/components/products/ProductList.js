@@ -6,6 +6,7 @@ import * as productActions from "../../redux/actions/productActions";
 
 class ProductList extends Component {
   componentDidMount() {
+      
     this.props.actions.getProducts();
   }
 
@@ -30,7 +31,8 @@ class ProductList extends Component {
         </tr>
       </thead>
       {this.props.products.map(product => (
- <tbody>
+          
+          <tbody>
  <tr>
       <th scope="row">{product.id}</th>
    <td>{product.productName}</td>
