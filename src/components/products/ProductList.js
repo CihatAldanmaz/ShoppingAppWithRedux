@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 import { Badge } from "reactstrap";
+import {bindActionCreators} from "redux";
+import * as productActions from "../../redux/actions/productActions"
+
 
 
 class ProductList extends Component {
+
+    componentDidMount() {
+        this.props.actions.getProducts()
+    }
+    
     render() {
+        console.log(this.props.products)
         return (
             <div>
                 <h3><Badge color="warning">Products</Badge>
@@ -17,8 +26,16 @@ class ProductList extends Component {
 function mapStateToProps(state){
     return {
         currentCategory:state.changeCategoryReducer,
-        categories:state.categoryListReducer
+        products:state.productListReducer
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        actions:{
+            getProducts:bindActionCreators(productActions.getProducts, dispatch)
+        }
     }
 }
 
-export default connect(mapStateToProps)(ProductList)
+export default connect(mapStateToProps,mapDispatchToProps)(ProductList)
