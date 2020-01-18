@@ -19,7 +19,7 @@ class ProductList extends Component {
           <Badge color="success">
             {this.props.currentCategory.categoryName}
           </Badge>
-
+          </h3>
           <Table>
       <thead>
         <tr>
@@ -47,7 +47,7 @@ class ProductList extends Component {
  
 
           
-        </h3>
+        
       </div>
     );
   }
