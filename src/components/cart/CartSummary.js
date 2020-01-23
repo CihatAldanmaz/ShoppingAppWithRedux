@@ -8,6 +8,8 @@ import {
   Badge
 } from "reactstrap";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as cartActions from "../../redux/actions/cartActions"
 
 class CartSummary extends Component {
 
@@ -26,7 +28,9 @@ class CartSummary extends Component {
           <DropdownMenu right>
               {
                   this.props.cart.map(item =>(
-                  <DropdownItem key={item.product.id}>{item.product.productName}
+                  <DropdownItem key={item.product.id}>
+                      <Badge color="danger" onClick = {()=>this.props.actions.removeFromCart(item.product) }>-</Badge>
+                      {item.product.productName}
                   <Badge color="success">{item.quantity}</Badge>
                   </DropdownItem>
                   
@@ -52,9 +56,17 @@ class CartSummary extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch){
+    return{
+        actions:{
+            removeFromCart: bindActionCreators(cartActions.removeFromCart, dispatch)
+        }
+    }
+}
+
 function mapStateToProps(state){
     return {
         cart:state.cartReducer
     }
 }
-export default connect(mapStateToProps)(CartSummary);
+export default connect(mapStateToProps,mapDispatchToProps)(CartSummary);
