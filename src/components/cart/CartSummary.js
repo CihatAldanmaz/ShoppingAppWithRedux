@@ -10,8 +10,11 @@ import {
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as cartActions from "../../redux/actions/cartActions"
+import {Link} from "react-router-dom"
 
 class CartSummary extends Component {
+
+    
 
     renderEmptyCart(){
         return (
@@ -38,7 +41,7 @@ class CartSummary extends Component {
               }
            
             <DropdownItem divider />
-            <DropdownItem>Check Out</DropdownItem>
+            <DropdownItem><Link to={"/cart"}>Check Out</Link></DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
         )
